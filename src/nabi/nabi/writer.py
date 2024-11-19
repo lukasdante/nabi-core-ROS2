@@ -26,15 +26,16 @@ class Writer(Node):
             self.encoding_format = self.get_parameter('encoding_format').get_parameter_value().string_value
             self.input_file = self.get_parameter('input_file').get_parameter_value().string_value
 
+            self.publisher = self.create_publisher(String, 'conversation/transcript', 10)
+            self.reset_publisher = self.create_publisher(Bool, 'conversation/reset', 10)
+            self.subscriber = self.create_subscription(String, 'conversation/request_audio', self.write, 10)
+
             self.get_logger().info("Writer initialized.")
         except Exception as e:
             self.get_logger().error(f"Unable to initialize writer: {e}")
 
-    def write(self):
+    def write(self, msg):
         """ Encodes audio to text. """
-
-        # Load and encode the audio file
-        encoded_audio = self.encode_audio()
 
         # Configure the request
         headers = {'Content-Type': 'application/json'}
@@ -45,7 +46,7 @@ class Writer(Node):
                 'languageCode': self.language
             },
             'audio': {
-                'content': encoded_audio
+                'content': msg.data
             }
         }
 
@@ -65,24 +66,28 @@ class Writer(Node):
                     transcription = res['alternatives'][0]['transcript']
                     self.get_logger().info(f"Transcript: {transcription}")
 
-                    # Remove the audio file
-                    if os.path.exists(self.input_file):
-                        os.remove(self.input_file)
+                    # Prepare message
+                    msg = String()
+                    msg.data = transcription
+                    
+                    # Publish the message
+                    self.publisher.publish(msg)
+                    self.get_logger().info(f"Transcription published.")
 
                     return transcription
             else:
-                self.get_logger().info("No transcription found.")
+                self.get_logger().info("No transcription found, resetting conversation.")
+
+                # Prepare message
+                msg = Bool()
+                msg.data = True
+                
+                # Publish message
+                self.reset_publisher.publish(msg)
                 return None
         else:
             self.get_logger().error(f"Writer request error {response.status_code}.")
             return None
-    
-    def encode_audio(self):
-        """ Encode audio to base64 and decode to utf-8. """
-
-        with open(self.input_file, 'rb') as f:
-            audio_content = f.read()
-        return base64.b64encode(audio_content).decode('utf-8')
 
 
 def main(args=None):

@@ -43,6 +43,14 @@ class Talker(Node):
             self.scopes = "https://www.googleapis.com/auth/cloud-platform"
             self.api_endpoint = "https://texttospeech.googleapis.com/v1/text:synthesize"
 
+            
+            self.publisher = self.create_publisher(Bool, 'conversation/reset', 10)
+            self.subscriber = self.create_subscription(String, 'conversation/response', self.talk, 10)
+
+            msg = Bool()
+            msg.data = True
+            self.publisher.publish(msg)
+
             self.get_logger().info("Talker initialized.")
         except Exception as e:
             self.get_logger().error(f"Unable to initialize talker: {e}")
@@ -66,7 +74,7 @@ class Talker(Node):
 
         return json.dumps(data)
 
-    def vocalize(self, data):
+    def vocalize(self, msg):
         """ Returns speech of a given API response. """
 
         now = int(time.time())
@@ -98,7 +106,7 @@ class Talker(Node):
             }
 
             # Make the POST request
-            api_response = requests.post(self.api_endpoint, headers=api_headers, data=data)
+            api_response = requests.post(self.api_endpoint, headers=api_headers, data=msg.data)
 
             api_response_text = api_response.text
 
@@ -109,6 +117,9 @@ class Talker(Node):
                 self.get_logger().error(f"API Error: {api_response.status_code} {api_response.text}")
         else:
             self.get_logger().error(f"Error: {response.status_code} {response.text}")
+
+        
+
         return api_response_text
 
     def save_audio(self, speech):
@@ -149,7 +160,14 @@ class Talker(Node):
                 stream.close()
                 audio.terminate()
 
-            self.get_logger().info("Playback finished.")
+            # Prepare the message
+            msg = Bool()
+            msg.data = True
+
+            # Publish the message
+            self.publisher.publish(msg)
+            self.get_logger().info("Playback finished, resetting conversation.")
+
             os.remove(self.output_file)
         except Exception as e:
             self.get_logger().error(f"An error occurred: {e}")

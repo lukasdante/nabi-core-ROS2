@@ -1,10 +1,12 @@
 import pyaudio
 import wave
 import numpy
+import io
+import base64
+from ctypes import *
 
 import rclpy
 from rclpy.node import Node
-import rclpy.parameter
 from std_msgs.msg import String, Bool
 
 
@@ -18,25 +20,26 @@ class Recorder(Node):
             self.declare_parameter('sample_rate', 16000)
             self.declare_parameter('threshold', 1000)
             self.declare_parameter('silence_limit', 1.2)
-            self.declare_parameter('input_file', 'input.wav')
 
             self.chunk_size = self.get_parameter('chunk_size').get_parameter_value().integer_value
             self.channels = self.get_parameter('channels').get_parameter_value().integer_value
             self.sample_rate = self.get_parameter('sample_rate').get_parameter_value().integer_value
             self.threshold = self.get_parameter('threshold').get_parameter_value().integer_value
-            self.silence_limit = self.get_parameter('silence_limit').get2_parameter_value().double_value
-            self.input_file = self.get_parameter('input_file').get_parameter_value().string_value
+            self.silence_limit = self.get_parameter('silence_limit').get_parameter_value().double_value
 
-            self.publisher = self.create_publisher(Bool, 'conversational/input', 10)
+            self.publisher = self.create_publisher(String, 'conversation/request_audio', 10)
+            self.subscription = self.create_subscription(Bool,'conversation/reset', self.record, 10)
 
             self.get_logger().info("Recorder initialized.")
         except Exception as e:
             self.get_logger().error(f"Unable to initialize recorder: {e}")
 
-    def record(self):
+    def record(self, msg):
         """ Record audio until silence is detected. """
+        if not msg.data:
+            self.get_logger().info("Recording stopped. Conversation not ready for new instance.")
+            return
 
-        
 
         audio = pyaudio.PyAudio()
 
@@ -81,29 +84,39 @@ class Recorder(Node):
             else:
                 silent_chunks = 0
             
-            if silent_chunks >= int(self.silence_limit * self.sample_rate / self.chunk_size):
+            if silent_chunks >= int(self.silence_limit * self.sample_rate / self.chunk_size + 0.05):
                 self.get_logger().info("Silence detected. Stopping recording...")
 
-                # If audio is not entirely silent throw it
+                # If audio is not entirely silent publish it
                 if (self.get_clock().now().nanoseconds - initial_time) > ((self.silence_limit + 0.1) * 1e9):
-                    msg = Bool()
-                    msg.data = True
-                    self.publisher.publish(msg)
+                    break
                 
         # Stop and close the stream
         stream.stop_stream()
         stream.close()
         audio.terminate()
 
-        # Save the recorded audio to a file
-        wf = wave.open(self.input_file, 'wb')
-        wf.setnchannels(self.channels)
-        wf.setsampwidth(audio.get_sample_size(pyaudio.paInt16))
-        wf.setframerate(self.sample_rate)
-        wf.writeframes(b''.join(frames))
-        wf.close()
+        # Create a BytesIO buffer to store WAV data in memory
+        wav_buffer = io.BytesIO()
+
+        # Write the WAV data into the buffer
+        with wave.open(wav_buffer, 'wb') as wf:
+            wf.setnchannels(self.channels)
+            wf.setsampwidth(audio.get_sample_size(pyaudio.paInt16))
+            wf.setframerate(self.sample_rate)
+            wf.writeframes(b''.join(frames))
+
+        # Get the WAV data from the buffer
+        wav_buffer.seek(0)
+        audio_content = wav_buffer.read()
     
-        self.get_logger().info(f"Recording has been saved as {self.input_file}.")
+        # Prepare the message
+        msg = String()
+        msg.data = base64.b64encode(audio_content).decode('utf-8')
+        
+        # Publish message to topic `conversation/request_audio`
+        self.publisher.publish(msg)
+        self.get_logger().info(f"Base64 audio string published: {msg.data[:15]}")
 
     def get_volume(self, data):
         """ Obtains the mean absolute value of the current audio. """
@@ -114,6 +127,14 @@ class Recorder(Node):
         return numpy.abs(audio_data).mean()
 
 def main(args=None):
+    # Handle ASLA errors for cleaner output.
+    ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
+    def py_error_handler(filename, line, function, err, fmt):
+        pass
+    c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
+    asound = cdll.LoadLibrary('libasound.so')
+    asound.snd_lib_error_set_handler(c_error_handler)
+
     rclpy.init(args=args)
 
     lone_recorder = Recorder()

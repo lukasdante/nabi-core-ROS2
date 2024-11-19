@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 import rclpy
 from rclpy.node import Node
+from std_msgs.msg import Bool, String
 
 from google.cloud.dialogflowcx_v3beta1.services.agents import AgentsClient
 from google.cloud.dialogflowcx_v3beta1.services.sessions import SessionsClient
@@ -21,14 +22,17 @@ class Parser(Node):
             self.location_id = os.getenv("DFCX_LOCATION_ID")
             self.agent_id = os.getenv("DFCX_AGENT_ID")
             self.service_account = str(Path(__file__).parent.parent.parent.parent) + '/json/' + os.getenv("DFCX_SERVICE_ACCOUNT")
-
             os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = self.service_account
-
             self.agent = f'projects/{self.project_id}/locations/{self.location_id}/agents/{self.agent_id}'
             self.session_id = None
 
             self.declare_parameter('language', 'en-US')
+
             self.language = self.get_parameter('language').get_parameter_value().string_value
+ 
+            self.response_publisher = self.create_publisher(String, 'conversation/response', 10)
+            self.params_publisher = self.create_publisher(String, 'conversation/parameters', 10)
+            self.subscriber = self.create_subscription(String, 'conversation/transcript', self.detect_intent, 10)
 
             self.get_logger().info("Parser initialized.")
         except Exception as e:
