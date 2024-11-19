@@ -1,0 +1,33 @@
+[0.526s] Invoking command in '/home/louis/ros2_ws/src/python_parameters': PS1=(env) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/louis/ros2_ws/build/python_parameters/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(env) /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/python_parameters build --build-base /home/louis/ros2_ws/build/python_parameters/build install --record /home/louis/ros2_ws/build/python_parameters/install.log --single-version-externally-managed install_data
+[0.621s] /home/louis/nabi_ws/env/lib/python3.12/site-packages/setuptools/_distutils/dist.py:261: UserWarning: Unknown distribution option: 'tests_require'
+[0.622s]   warnings.warn(msg)
+[0.685s] running egg_info
+[0.685s] creating ../../build/python_parameters/python_parameters.egg-info
+[0.695s] writing ../../build/python_parameters/python_parameters.egg-info/PKG-INFO
+[0.696s] writing dependency_links to ../../build/python_parameters/python_parameters.egg-info/dependency_links.txt
+[0.696s] writing entry points to ../../build/python_parameters/python_parameters.egg-info/entry_points.txt
+[0.696s] writing requirements to ../../build/python_parameters/python_parameters.egg-info/requires.txt
+[0.696s] writing top-level names to ../../build/python_parameters/python_parameters.egg-info/top_level.txt
+[0.696s] writing manifest file '../../build/python_parameters/python_parameters.egg-info/SOURCES.txt'
+[0.717s] reading manifest file '../../build/python_parameters/python_parameters.egg-info/SOURCES.txt'
+[0.717s] adding license file 'LICENSE'
+[0.718s] writing manifest file '../../build/python_parameters/python_parameters.egg-info/SOURCES.txt'
+[0.718s] running build
+[0.718s] running build_py
+[0.718s] creating /home/louis/ros2_ws/build/python_parameters/build/lib/python_parameters
+[0.718s] copying python_parameters/__init__.py -> /home/louis/ros2_ws/build/python_parameters/build/lib/python_parameters
+[0.718s] running install
+[0.721s] running install_lib
+[0.732s] creating /home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages/python_parameters
+[0.732s] copying /home/louis/ros2_ws/build/python_parameters/build/lib/python_parameters/__init__.py -> /home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages/python_parameters
+[0.732s] byte-compiling /home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages/python_parameters/__init__.py to __init__.cpython-310.pyc
+[0.732s] running install_data
+[0.732s] creating /home/louis/ros2_ws/install/python_parameters/share/ament_index/resource_index/packages
+[0.732s] copying resource/python_parameters -> /home/louis/ros2_ws/install/python_parameters/share/ament_index/resource_index/packages
+[0.733s] copying package.xml -> /home/louis/ros2_ws/install/python_parameters/share/python_parameters
+[0.733s] running install_egg_info
+[0.744s] Copying ../../build/python_parameters/python_parameters.egg-info to /home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages/python_parameters-0.0.0-py3.10.egg-info
+[0.744s] running install_scripts
+[0.833s] Installing minimal_param_node script to /home/louis/ros2_ws/install/python_parameters/lib/python_parameters
+[0.833s] writing list of installed files to '/home/louis/ros2_ws/build/python_parameters/install.log'
+[0.848s] Invoked command in '/home/louis/ros2_ws/src/python_parameters' returned '0': PS1=(env) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/louis/ros2_ws/build/python_parameters/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(env) /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/python_parameters build --build-base /home/louis/ros2_ws/build/python_parameters/build install --record /home/louis/ros2_ws/build/python_parameters/install.log --single-version-externally-managed install_data

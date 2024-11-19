@@ -1,0 +1,17 @@
+[1.122s] Invoking command in '/home/louis/ros2_ws/build/python_parameters': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/louis/ros2_ws/build/python_parameters/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/louis/ros2_ws/build/python_parameters/build --no-deps symlink_data
+[1.297s] running develop
+[1.406s] running egg_info
+[1.406s] writing python_parameters.egg-info/PKG-INFO
+[1.406s] writing dependency_links to python_parameters.egg-info/dependency_links.txt
+[1.406s] writing entry points to python_parameters.egg-info/entry_points.txt
+[1.406s] writing requirements to python_parameters.egg-info/requires.txt
+[1.406s] writing top-level names to python_parameters.egg-info/top_level.txt
+[1.407s] reading manifest file 'python_parameters.egg-info/SOURCES.txt'
+[1.408s] writing manifest file 'python_parameters.egg-info/SOURCES.txt'
+[1.409s] running build_ext
+[1.409s] Creating /home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages/python-parameters.egg-link (link to .)
+[1.410s] Installing minimal_param_node script to /home/louis/ros2_ws/install/python_parameters/lib/python_parameters
+[1.410s] 
+[1.410s] Installed /home/louis/ros2_ws/build/python_parameters
+[1.410s] running symlink_data
+[1.449s] Invoked command in '/home/louis/ros2_ws/build/python_parameters' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/louis/ros2_ws/build/python_parameters/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/louis/ros2_ws/build/python_parameters/build --no-deps symlink_data

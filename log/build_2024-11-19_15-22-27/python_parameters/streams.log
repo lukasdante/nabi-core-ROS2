@@ -1,0 +1,23 @@
+[0.396s] Invoking command in '/home/louis/ros2_ws/src/python_parameters': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/louis/ros2_ws/build/python_parameters/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/python_parameters build --build-base /home/louis/ros2_ws/build/python_parameters/build install --record /home/louis/ros2_ws/build/python_parameters/install.log --single-version-externally-managed install_data
+[0.552s] running egg_info
+[0.553s] writing ../../build/python_parameters/python_parameters.egg-info/PKG-INFO
+[0.553s] writing dependency_links to ../../build/python_parameters/python_parameters.egg-info/dependency_links.txt
+[0.553s] writing entry points to ../../build/python_parameters/python_parameters.egg-info/entry_points.txt
+[0.553s] writing requirements to ../../build/python_parameters/python_parameters.egg-info/requires.txt
+[0.553s] writing top-level names to ../../build/python_parameters/python_parameters.egg-info/top_level.txt
+[0.554s] reading manifest file '../../build/python_parameters/python_parameters.egg-info/SOURCES.txt'
+[0.554s] adding license file 'LICENSE'
+[0.555s] writing manifest file '../../build/python_parameters/python_parameters.egg-info/SOURCES.txt'
+[0.555s] running build
+[0.555s] running build_py
+[0.555s] running install
+[0.555s] running install_lib
+[0.556s] running install_data
+[0.556s] copying launch/python_parameters_launch.py -> /home/louis/ros2_ws/install/python_parameters/share/python_parameters
+[0.556s] running install_egg_info
+[0.557s] removing '/home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages/python_parameters-0.0.0-py3.10.egg-info' (and everything under it)
+[0.558s] Copying ../../build/python_parameters/python_parameters.egg-info to /home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages/python_parameters-0.0.0-py3.10.egg-info
+[0.558s] running install_scripts
+[0.571s] Installing minimal_param_node script to /home/louis/ros2_ws/install/python_parameters/lib/python_parameters
+[0.571s] writing list of installed files to '/home/louis/ros2_ws/build/python_parameters/install.log'
+[0.585s] Invoked command in '/home/louis/ros2_ws/src/python_parameters' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/louis/ros2_ws/build/python_parameters/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/python_parameters build --build-base /home/louis/ros2_ws/build/python_parameters/build install --record /home/louis/ros2_ws/build/python_parameters/install.log --single-version-externally-managed install_data

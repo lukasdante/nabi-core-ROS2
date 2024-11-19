@@ -1,0 +1,34 @@
+[0.605s] Invoking command in '/home/louis/ros2_ws/build/nabi': PS1=(base) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/louis/ros2_ws/build/nabi/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/nabi/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/louis/ros2_ws/build/nabi/build --no-deps symlink_data --force
+[0.706s] /home/louis/nabi_ws/env/lib/python3.12/site-packages/setuptools/_distutils/dist.py:261: UserWarning: Unknown distribution option: 'tests_require'
+[0.706s]   warnings.warn(msg)
+[0.822s] running develop
+[0.822s] /home/louis/nabi_ws/env/lib/python3.12/site-packages/setuptools/command/develop.py:41: EasyInstallDeprecationWarning: easy_install command is deprecated.
+[0.823s] !!
+[0.823s] 
+[0.823s]         ********************************************************************************
+[0.823s]         Please avoid running ``setup.py`` and ``easy_install``.
+[0.823s]         Instead, use pypa/build, pypa/installer or other
+[0.823s]         standards-based tools.
+[0.823s] 
+[0.823s]         See https://github.com/pypa/setuptools/issues/917 for details.
+[0.823s]         ********************************************************************************
+[0.823s] 
+[0.823s] !!
+[0.823s]   easy_install.initialize_options(self)
+[0.970s] running egg_info
+[0.980s] writing nabi.egg-info/PKG-INFO
+[0.980s] writing dependency_links to nabi.egg-info/dependency_links.txt
+[0.980s] writing entry points to nabi.egg-info/entry_points.txt
+[0.981s] writing requirements to nabi.egg-info/requires.txt
+[0.981s] writing top-level names to nabi.egg-info/top_level.txt
+[1.002s] reading manifest file 'nabi.egg-info/SOURCES.txt'
+[1.003s] writing manifest file 'nabi.egg-info/SOURCES.txt'
+[1.044s] running build_ext
+[1.044s] Creating /home/louis/ros2_ws/install/nabi/lib/python3.10/site-packages/nabi.egg-link (link to .)
+[1.044s] Installing recorder script to /home/louis/ros2_ws/install/nabi/lib/nabi
+[1.045s] 
+[1.045s] Installed /home/louis/ros2_ws/build/nabi
+[1.045s] running symlink_data
+[1.045s] symbolically linking /home/louis/ros2_ws/build/nabi/resource/nabi -> /home/louis/ros2_ws/install/nabi/share/ament_index/resource_index/packages
+[1.045s] symbolically linking /home/louis/ros2_ws/build/nabi/package.xml -> /home/louis/ros2_ws/install/nabi/share/nabi
+[1.061s] Invoked command in '/home/louis/ros2_ws/build/nabi' returned '0': PS1=(base) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/louis/ros2_ws/build/nabi/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/nabi/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/louis/ros2_ws/build/nabi/build --no-deps symlink_data --force

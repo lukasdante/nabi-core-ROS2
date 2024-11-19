@@ -1,0 +1,67 @@
+[0.526s] Invoking command in '/home/louis/ros2_ws/build/tutorial_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/louis/ros2_ws/install/py_srvcli:/home/louis/ros2_ws/install/py_pubsub:/home/louis/ros2_ws/install/my_package:/home/louis/workspaces/ros2_ws/install/launch_testing_examples:/home/louis/workspaces/ros2_ws/install/examples_rclpy_pointcloud_publisher:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_subscriber:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_service:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_publisher:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_client:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_action_server:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_action_client:/home/louis/workspaces/ros2_ws/install/examples_rclpy_guard_conditions:/home/louis/workspaces/ros2_ws/install/examples_rclpy_executors:/opt/ros/humble CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake /home/louis/ros2_ws/src/tutorial_interfaces -DCMAKE_INSTALL_PREFIX=/home/louis/ros2_ws/install/tutorial_interfaces
+[0.534s] -- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.632s] -- Found geometry_msgs: 4.2.4 (/opt/ros/humble/share/geometry_msgs/cmake)
+[0.650s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.651s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.655s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.662s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.670s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.693s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[0.922s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[1.213s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.326s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.342s] -- Found PythonInterp: /home/louis/miniconda3/bin/python3 (found suitable version "3.12.4", minimum required is "3.6") 
+[1.344s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[1.363s] -- Found PythonLibs: /home/louis/miniconda3/lib/libpython3.12.so (found suitable version "3.12.4", minimum required is "3.5") 
+[1.363s] -- Using PYTHON_EXECUTABLE: /home/louis/miniconda3/bin/python3
+[1.363s] -- Using PYTHON_INCLUDE_DIRS: /home/louis/miniconda3/include/python3.12
+[1.363s] -- Using PYTHON_LIBRARIES: /home/louis/miniconda3/lib/libpython3.12.so
+[1.378s] -- Found PythonExtra: .so  
+[1.532s] -- Using numpy include directory: /home/louis/miniconda3/lib/python3.12/site-packages/numpy/_core/include
+[1.546s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[1.563s] -- Added test 'lint_cmake' to check CMake code style
+[1.564s] -- Added test 'xmllint' to check XML markup files
+[1.566s] -- Configuring done
+[1.594s] -- Generating done
+[1.596s] -- Build files have been written to: /home/louis/ros2_ws/build/tutorial_interfaces
+[1.601s] Invoked command in '/home/louis/ros2_ws/build/tutorial_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/louis/ros2_ws/install/py_srvcli:/home/louis/ros2_ws/install/py_pubsub:/home/louis/ros2_ws/install/my_package:/home/louis/workspaces/ros2_ws/install/launch_testing_examples:/home/louis/workspaces/ros2_ws/install/examples_rclpy_pointcloud_publisher:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_subscriber:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_service:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_publisher:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_client:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_action_server:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_action_client:/home/louis/workspaces/ros2_ws/install/examples_rclpy_guard_conditions:/home/louis/workspaces/ros2_ws/install/examples_rclpy_executors:/opt/ros/humble CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake /home/louis/ros2_ws/src/tutorial_interfaces -DCMAKE_INSTALL_PREFIX=/home/louis/ros2_ws/install/tutorial_interfaces
+[1.602s] Invoking command in '/home/louis/ros2_ws/build/tutorial_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/louis/ros2_ws/install/py_srvcli:/home/louis/ros2_ws/install/py_pubsub:/home/louis/ros2_ws/install/my_package:/home/louis/workspaces/ros2_ws/install/launch_testing_examples:/home/louis/workspaces/ros2_ws/install/examples_rclpy_pointcloud_publisher:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_subscriber:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_service:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_publisher:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_client:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_action_server:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_action_client:/home/louis/workspaces/ros2_ws/install/examples_rclpy_guard_conditions:/home/louis/workspaces/ros2_ws/install/examples_rclpy_executors:/opt/ros/humble CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/louis/ros2_ws/build/tutorial_interfaces --clean-first -- -j16 -l16
+[1.757s] [  2%] [34m[1mGenerating C code for ROS interfaces[0m
+[1.764s] [  4%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[1.769s] [  4%] Built target ament_cmake_python_copy_tutorial_interfaces
+[1.795s] Traceback (most recent call last):
+[1.795s]   File "/opt/ros/humble/share/rosidl_generator_c/cmake/../../../lib/rosidl_generator_c/rosidl_generator_c", line 8, in <module>
+[1.795s]     from rosidl_generator_c import generate_c
+[1.795s]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_generator_c/__init__.py", line 15, in <module>
+[1.795s]     from rosidl_cmake import convert_camel_case_to_lower_case_underscore
+[1.795s]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_cmake/__init__.py", line 24, in <module>
+[1.795s]     from rosidl_parser.parser import parse_idl_file
+[1.795s]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_parser/parser.py", line 20, in <module>
+[1.795s]     from lark import Lark
+[1.795s] ModuleNotFoundError: No module named 'lark'
+[1.800s] gmake[2]: *** [CMakeFiles/tutorial_interfaces__rosidl_generator_c.dir/build.make:149: rosidl_generator_c/tutorial_interfaces/msg/num.h] Error 1
+[1.800s] gmake[1]: *** [CMakeFiles/Makefile2:212: CMakeFiles/tutorial_interfaces__rosidl_generator_c.dir/all] Error 2
+[1.800s] gmake[1]: *** Waiting for unfinished jobs....
+[1.801s] Traceback (most recent call last):
+[1.801s]   File "/opt/ros/humble/share/rosidl_generator_cpp/cmake/../../../lib/rosidl_generator_cpp/rosidl_generator_cpp", line 8, in <module>
+[1.801s]     from rosidl_generator_cpp import generate_cpp
+[1.801s]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_generator_cpp/__init__.py", line 17, in <module>
+[1.801s]     from rosidl_cmake import generate_files
+[1.801s]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_cmake/__init__.py", line 24, in <module>
+[1.801s]     from rosidl_parser.parser import parse_idl_file
+[1.801s]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_parser/parser.py", line 20, in <module>
+[1.801s]     from lark import Lark
+[1.801s] ModuleNotFoundError: No module named 'lark'
+[1.806s] gmake[2]: *** [CMakeFiles/tutorial_interfaces__cpp.dir/build.make:161: rosidl_generator_cpp/tutorial_interfaces/msg/num.hpp] Error 1
+[1.806s] gmake[1]: *** [CMakeFiles/Makefile2:265: CMakeFiles/tutorial_interfaces__cpp.dir/all] Error 2
+[1.906s] running egg_info
+[1.907s] creating tutorial_interfaces.egg-info
+[1.917s] writing tutorial_interfaces.egg-info/PKG-INFO
+[1.917s] writing dependency_links to tutorial_interfaces.egg-info/dependency_links.txt
+[1.917s] writing top-level names to tutorial_interfaces.egg-info/top_level.txt
+[1.917s] writing manifest file 'tutorial_interfaces.egg-info/SOURCES.txt'
+[1.949s] reading manifest file 'tutorial_interfaces.egg-info/SOURCES.txt'
+[1.949s] writing manifest file 'tutorial_interfaces.egg-info/SOURCES.txt'
+[1.969s] [  4%] Built target ament_cmake_python_build_tutorial_interfaces_egg
+[1.970s] gmake: *** [Makefile:146: all] Error 2
+[1.971s] Invoked command in '/home/louis/ros2_ws/build/tutorial_interfaces' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/louis/ros2_ws/install/py_srvcli:/home/louis/ros2_ws/install/py_pubsub:/home/louis/ros2_ws/install/my_package:/home/louis/workspaces/ros2_ws/install/launch_testing_examples:/home/louis/workspaces/ros2_ws/install/examples_rclpy_pointcloud_publisher:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_subscriber:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_service:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_publisher:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_client:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_action_server:/home/louis/workspaces/ros2_ws/install/examples_rclpy_minimal_action_client:/home/louis/workspaces/ros2_ws/install/examples_rclpy_guard_conditions:/home/louis/workspaces/ros2_ws/install/examples_rclpy_executors:/opt/ros/humble CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/louis/ros2_ws/build/tutorial_interfaces --clean-first -- -j16 -l16
