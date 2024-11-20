@@ -1,0 +1,20 @@
+[0.432s] Invoking command in '/home/louis/ros2_ws/build/nabi': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/louis/ros2_ws/build/nabi/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/nabi/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/louis/ros2_ws/build/nabi/build --no-deps symlink_data
+[0.619s] running develop
+[0.741s] running egg_info
+[0.741s] writing nabi.egg-info/PKG-INFO
+[0.741s] writing dependency_links to nabi.egg-info/dependency_links.txt
+[0.741s] writing entry points to nabi.egg-info/entry_points.txt
+[0.741s] writing requirements to nabi.egg-info/requires.txt
+[0.741s] writing top-level names to nabi.egg-info/top_level.txt
+[0.742s] reading manifest file 'nabi.egg-info/SOURCES.txt'
+[0.743s] writing manifest file 'nabi.egg-info/SOURCES.txt'
+[0.744s] running build_ext
+[0.744s] Creating /home/louis/ros2_ws/install/nabi/lib/python3.10/site-packages/nabi.egg-link (link to .)
+[0.744s] Installing parser script to /home/louis/ros2_ws/install/nabi/lib/nabi
+[0.744s] Installing recorder script to /home/louis/ros2_ws/install/nabi/lib/nabi
+[0.745s] Installing talker script to /home/louis/ros2_ws/install/nabi/lib/nabi
+[0.745s] Installing writer script to /home/louis/ros2_ws/install/nabi/lib/nabi
+[0.745s] 
+[0.745s] Installed /home/louis/ros2_ws/build/nabi
+[0.745s] running symlink_data
+[0.762s] Invoked command in '/home/louis/ros2_ws/build/nabi' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/louis/ros2_ws/build/nabi/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/nabi/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/louis/ros2_ws/build/nabi/build --no-deps symlink_data

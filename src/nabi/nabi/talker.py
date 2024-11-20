@@ -74,7 +74,7 @@ class Talker(Node):
 
         return json.dumps(data)
 
-    def vocalize(self, msg):
+    def vocalize(self, data):
         """ Returns speech of a given API response. """
 
         now = int(time.time())
@@ -106,7 +106,7 @@ class Talker(Node):
             }
 
             # Make the POST request
-            api_response = requests.post(self.api_endpoint, headers=api_headers, data=msg.data)
+            api_response = requests.post(self.api_endpoint, headers=api_headers, data=data)
 
             api_response_text = api_response.text
 
@@ -130,10 +130,10 @@ class Talker(Node):
         with open(self.output_file, "wb") as file:
             file.write(base64.b64decode(audio_data))
 
-    def talk(self, response):
+    def talk(self, msg):
         """ Talks given a response in text. """
 
-        response = self.write_json(response)
+        response = self.write_json(msg.data)
         speech = self.vocalize(response)
         self.save_audio(speech)
 

@@ -6,21 +6,24 @@ def generate_launch_description():
         Node(
             package='nabi',
             executable='recorder',
-            name='sim'
+            name='recorder',
+            parameters=[
+                {'threshold': 5000},
+            ]
         ),
         Node(
             package='nabi',
             executable='writer',
-            name='sim'
+            name='writer'
         ),
         Node(
             package='nabi',
             executable='parser',
-            name='sim'
+            name='parser'
         ),
         Node(
             package='nabi',
             executable='talker',
-            name='sim'
+            name='talker'
         )
     ])

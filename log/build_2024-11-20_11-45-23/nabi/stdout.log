@@ -1,0 +1,18 @@
+running develop
+running egg_info
+writing nabi.egg-info/PKG-INFO
+writing dependency_links to nabi.egg-info/dependency_links.txt
+writing entry points to nabi.egg-info/entry_points.txt
+writing requirements to nabi.egg-info/requires.txt
+writing top-level names to nabi.egg-info/top_level.txt
+reading manifest file 'nabi.egg-info/SOURCES.txt'
+writing manifest file 'nabi.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/louis/ros2_ws/install/nabi/lib/python3.10/site-packages/nabi.egg-link (link to .)
+Installing parser script to /home/louis/ros2_ws/install/nabi/lib/nabi
+Installing recorder script to /home/louis/ros2_ws/install/nabi/lib/nabi
+Installing talker script to /home/louis/ros2_ws/install/nabi/lib/nabi
+Installing writer script to /home/louis/ros2_ws/install/nabi/lib/nabi
+
+Installed /home/louis/ros2_ws/build/nabi
+running symlink_data

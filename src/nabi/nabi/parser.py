@@ -1,5 +1,6 @@
 import os
 import uuid
+import json
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -38,7 +39,7 @@ class Parser(Node):
         except Exception as e:
             self.get_logger().error(f"Unable to initialize parser: {e}")
 
-    def detect_intent(self, text):
+    def detect_intent(self, msg):
         """ Detect intent, extract parameters, and output response. """
 
         if not self.session_id:
@@ -50,7 +51,7 @@ class Parser(Node):
         session_client = SessionsClient(client_options=client_options)
 
         # Configure the request
-        text_input = session.TextInput(text=text)
+        text_input = session.TextInput(text=msg.data)
         query_input = session.QueryInput(text=text_input, language_code=self.language)
         
         # Send the request
@@ -70,7 +71,21 @@ class Parser(Node):
         parameters = MessageToDict(response._pb)
         self.get_logger().info(f"Parameters: {parameters['queryResult']['parameters']}")
 
+        # Prepare parameters message data
+        params_msg = String()
+        params_msg.data = json.dumps(parameters)
+
+        # Publish parameters message
+        self.params_publisher.publish(params_msg)
+        self.get_logger().info(f"Parameters: {parameters['queryResult']['parameters']}")
+
+        # Prepare response message data
         response_text = ' '.join(response_messages)
+        response_msg = String()
+        response_msg.data = response_text
+
+        # Publish response message
+        self.response_publisher.publish(response_msg)
         self.get_logger().info(f"Response text: {response_text}")
         
         # Return the Intent
