@@ -5,12 +5,15 @@ import requests
 import wave
 import pyaudio
 import base64
+import io
 from pathlib import Path
 from dotenv import load_dotenv
+from ctypes import *
 
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String, Bool
+from rcl_interfaces.msg import ParameterDescriptor
 
 from google.auth import jwt as google_jwt
 from google.auth import crypt
@@ -25,18 +28,21 @@ class Talker(Node):
             with open(self.service_account) as f:
                 self.service_account_info = json.load(f)
 
-            self.declare_parameter('language', 'en-US')
-            self.declare_parameter('gender', 'FEMALE')
-            self.declare_parameter('accent', 'en-US-Neural2-C')
-            self.declare_parameter('encoding_format', 'LINEAR16')
-            self.declare_parameter('output_file', 'output.wav')
-            self.declare_parameter('token_life', 3600)
+            self.declare_parameter('language', 'en-US',
+                                   ParameterDescriptor(description='Language of the transcription output.'))
+            self.declare_parameter('gender', 'FEMALE',
+                                   ParameterDescriptor(description='Gender of the text-to-speech voice agent.'))
+            self.declare_parameter('accent', 'en-US-Neural2-C',
+                                   ParameterDescriptor(description='Accent or voice type of the text-to-speech voice agent.'))
+            self.declare_parameter('encoding_format', 'LINEAR16',
+                                   ParameterDescriptor(description='Encoding format of the audio recording.'))
+            self.declare_parameter('token_life', 3600,
+                                   ParameterDescriptor(description='Validity of the text-to-speech API token in seconds.'))
 
             self.language = self.get_parameter('language').get_parameter_value().string_value
             self.gender = self.get_parameter('gender').get_parameter_value().string_value
             self.accent = self.get_parameter('accent').get_parameter_value().string_value
             self.encoding_format = self.get_parameter('encoding_format').get_parameter_value().string_value
-            self.output_file = self.get_parameter('output_file').get_parameter_value().string_value
             self.token_validity = self.get_parameter('token_life').get_parameter_value().integer_value
 
             self.token_url = "https://oauth2.googleapis.com/token"
@@ -122,57 +128,56 @@ class Talker(Node):
 
         return api_response_text
 
-    def save_audio(self, speech):
-        response = json.loads(speech)
-        audio_data = response['audioContent']
-
-        # Decode base64 to binary data and save as .wav
-        with open(self.output_file, "wb") as file:
-            file.write(base64.b64decode(audio_data))
-
     def talk(self, msg):
         """ Talks given a response in text. """
 
         response = self.write_json(msg.data)
         speech = self.vocalize(response)
-        self.save_audio(speech)
 
-        try:
-            # Open the wav file
-            with wave.open(self.output_file, 'rb') as wav_file:
-                # Set up the PyAudio stream
-                audio = pyaudio.PyAudio()
-                stream = audio.open(
-                    format=audio.get_format_from_width(wav_file.getsampwidth()),
-                    channels=wav_file.getnchannels(),
-                    rate=wav_file.getframerate(),
-                    output=True
-                )
+        # Parse the API response and decode base64 audio content
+        response_json = json.loads(speech)
+        audio_data = base64.b64decode(response_json['audioContent'])
 
-                # Read and play audio data
+        # Use io.BytesIO to handle audio data in memory
+        audio_stream = io.BytesIO(audio_data)
+        with wave.open(audio_stream, 'rb') as wav_file:
+            # Set up the PyAudio stream
+            audio = pyaudio.PyAudio()
+            stream = audio.open(
+                format=audio.get_format_from_width(wav_file.getsampwidth()),
+                channels=wav_file.getnchannels(),
+                rate=wav_file.getframerate(),
+                output=True
+            )
+
+            # Read and play audio data
+            data = wav_file.readframes(1024)
+            while data:
+                stream.write(data)
                 data = wav_file.readframes(1024)
-                while data:
-                    stream.write(data)
-                    data = wav_file.readframes(1024)
 
-                # Stop and close the stream
-                stream.stop_stream()
-                stream.close()
-                audio.terminate()
+            # Stop and close the stream
+            stream.stop_stream()
+            stream.close()
+            audio.terminate()
 
-            # Prepare the message
-            msg = Bool()
-            msg.data = True
+        # Prepare the message
+        msg = Bool()
+        msg.data = True
 
-            # Publish the message
-            self.publisher.publish(msg)
-            self.get_logger().info("Playback finished, resetting conversation.")
-
-            os.remove(self.output_file)
-        except Exception as e:
-            self.get_logger().error(f"An error occurred: {e}")
+        # Publish the message
+        self.publisher.publish(msg)
+        self.get_logger().info("Playback finished, resetting conversation.")
 
 def main(args=None):
+    # Handle ASLA errors for cleaner output.
+    ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
+    def py_error_handler(filename, line, function, err, fmt):
+        pass
+    c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
+    asound = cdll.LoadLibrary('libasound.so')
+    asound.snd_lib_error_set_handler(c_error_handler)
+
     load_dotenv()
 
     rclpy.init(args=args)

@@ -8,18 +8,23 @@ from ctypes import *
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String, Bool
-
+from rcl_interfaces.msg import ParameterDescriptor
 
 class Recorder(Node):
     def __init__(self):
         super().__init__('recorder')
         
         try:
-            self.declare_parameter('chunk_size', 1024)
-            self.declare_parameter('channels', 1)
-            self.declare_parameter('sample_rate', 16000)
-            self.declare_parameter('threshold', 1000)
-            self.declare_parameter('silence_limit', 1.2)
+            self.declare_parameter('chunk_size', 1024,
+                                   ParameterDescriptor(description='Chunk size of the audio recording.'))
+            self.declare_parameter('channels', 1,
+                                   ParameterDescriptor(description='Number of channels of the audio recording.'))
+            self.declare_parameter('sample_rate', 16000,
+                                   ParameterDescriptor(description='Sample rate of the audio recording.'))
+            self.declare_parameter('threshold', 1000,
+                                   ParameterDescriptor(description='Silence volume threshold of audio recording for automatic termination.'))
+            self.declare_parameter('silence_limit', 1.2,
+                                   ParameterDescriptor(description='Silence length until audio recording terminates.'))
 
             self.chunk_size = self.get_parameter('chunk_size').get_parameter_value().integer_value
             self.channels = self.get_parameter('channels').get_parameter_value().integer_value

@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Bool, String
+from rcl_interfaces.msg import ParameterDescriptor
 
 from google.cloud.dialogflowcx_v3beta1.services.agents import AgentsClient
 from google.cloud.dialogflowcx_v3beta1.services.sessions import SessionsClient
@@ -27,7 +28,8 @@ class Parser(Node):
             self.agent = f'projects/{self.project_id}/locations/{self.location_id}/agents/{self.agent_id}'
             self.session_id = None
 
-            self.declare_parameter('language', 'en-US')
+            self.declare_parameter('language', 'en-US',
+                                   ParameterDescriptor(description='Language of the transcription input.'))
 
             self.language = self.get_parameter('language').get_parameter_value().string_value
  

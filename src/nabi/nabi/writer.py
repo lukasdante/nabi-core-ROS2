@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String, Bool
-
+from rcl_interfaces.msg import ParameterDescriptor
 
 class Writer(Node):
     def __init__(self):
@@ -16,15 +16,17 @@ class Writer(Node):
             self.api_key = os.getenv('STT_API_KEY')
             self.api_endpoint = f'https://speech.googleapis.com/v1/speech:recognize?key={self.api_key}'
             
-            self.declare_parameter('language', 'en-US')
-            self.declare_parameter('sample_rate', 16000)
-            self.declare_parameter('encoding_format', 'LINEAR16')
-            self.declare_parameter('input_file', 'input.wav')
+            
+            self.declare_parameter('language', 'en-US', 
+                                   ParameterDescriptor(description='Language of the transcription output.'))
+            self.declare_parameter('sample_rate', 16000,
+                                   ParameterDescriptor(description='Sample rate of the audio recording.'))
+            self.declare_parameter('encoding_format', 'LINEAR16',
+                                   ParameterDescriptor(description='Encoding format of the audio recording.'))
 
             self.language = self.get_parameter('language').get_parameter_value().string_value
             self.sample_rate = self.get_parameter('sample_rate').get_parameter_value().integer_value
             self.encoding_format = self.get_parameter('encoding_format').get_parameter_value().string_value
-            self.input_file = self.get_parameter('input_file').get_parameter_value().string_value
 
             self.publisher = self.create_publisher(String, 'conversation/transcript', 10)
             self.reset_publisher = self.create_publisher(Bool, 'conversation/reset', 10)
@@ -73,8 +75,6 @@ class Writer(Node):
                     # Publish the message
                     self.publisher.publish(msg)
                     self.get_logger().info(f"Transcription published.")
-
-                    return transcription
             else:
                 self.get_logger().info("No transcription found, resetting conversation.")
 
@@ -84,10 +84,8 @@ class Writer(Node):
                 
                 # Publish message
                 self.reset_publisher.publish(msg)
-                return None
         else:
             self.get_logger().error(f"Writer request error {response.status_code}.")
-            return None
 
 
 def main(args=None):
