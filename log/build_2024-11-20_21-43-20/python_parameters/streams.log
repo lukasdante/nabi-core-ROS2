@@ -1,0 +1,25 @@
+[1.172s] Invoking command in '/home/louis/ros2_ws/build/python_parameters': PYTHONPATH=/home/louis/ros2_ws/build/python_parameters/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/louis/ros2_ws/build/python_parameters/build --no-deps symlink_data
+[1.356s] running develop
+[1.472s] running egg_info
+[1.472s] creating python_parameters.egg-info
+[1.472s] writing python_parameters.egg-info/PKG-INFO
+[1.472s] writing dependency_links to python_parameters.egg-info/dependency_links.txt
+[1.472s] writing entry points to python_parameters.egg-info/entry_points.txt
+[1.472s] writing requirements to python_parameters.egg-info/requires.txt
+[1.472s] writing top-level names to python_parameters.egg-info/top_level.txt
+[1.473s] writing manifest file 'python_parameters.egg-info/SOURCES.txt'
+[1.474s] reading manifest file 'python_parameters.egg-info/SOURCES.txt'
+[1.474s] writing manifest file 'python_parameters.egg-info/SOURCES.txt'
+[1.475s] running build_ext
+[1.475s] Creating /home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages/python-parameters.egg-link (link to .)
+[1.475s] Installing minimal_param_node script to /home/louis/ros2_ws/install/python_parameters/lib/python_parameters
+[1.476s] 
+[1.476s] Installed /home/louis/ros2_ws/build/python_parameters
+[1.476s] running symlink_data
+[1.476s] creating /home/louis/ros2_ws/install/python_parameters/share/ament_index
+[1.476s] creating /home/louis/ros2_ws/install/python_parameters/share/ament_index/resource_index
+[1.476s] creating /home/louis/ros2_ws/install/python_parameters/share/ament_index/resource_index/packages
+[1.476s] symbolically linking /home/louis/ros2_ws/build/python_parameters/resource/python_parameters -> /home/louis/ros2_ws/install/python_parameters/share/ament_index/resource_index/packages
+[1.476s] symbolically linking /home/louis/ros2_ws/build/python_parameters/package.xml -> /home/louis/ros2_ws/install/python_parameters/share/python_parameters
+[1.476s] symbolically linking /home/louis/ros2_ws/build/python_parameters/launch/python_parameters_launch.py -> /home/louis/ros2_ws/install/python_parameters/share/python_parameters
+[1.513s] Invoked command in '/home/louis/ros2_ws/build/python_parameters' returned '0': PYTHONPATH=/home/louis/ros2_ws/build/python_parameters/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/louis/ros2_ws/build/python_parameters/build --no-deps symlink_data

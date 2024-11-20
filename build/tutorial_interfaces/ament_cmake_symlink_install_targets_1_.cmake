@@ -1,1 +1,0 @@
-ament_cmake_symlink_install_targets("TARGET_FILES" "/home/louis/ros2_ws/build/tutorial_interfaces/rosidl_generator_py/tutorial_interfaces/tutorial_interfaces_s__rosidl_typesupport_introspection_c.cpython-312-x86_64-linux-gnu.so" "TARGETS" "tutorial_interfaces__rosidl_typesupport_introspection_c__pyext" "DESTINATION" "lib/python3.12/site-packages/tutorial_interfaces")

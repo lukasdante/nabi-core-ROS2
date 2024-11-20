@@ -10,3 +10,9 @@ __pycache__/**
 json/
 json
 json/**
+logs/
+logs/**
+log/
+log/**
+*.log
+

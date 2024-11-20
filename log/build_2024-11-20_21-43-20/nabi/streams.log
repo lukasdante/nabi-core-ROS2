@@ -1,0 +1,29 @@
+[1.171s] Invoking command in '/home/louis/ros2_ws/build/nabi': PYTHONPATH=/home/louis/ros2_ws/build/nabi/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/nabi/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/louis/ros2_ws/build/nabi/build --no-deps symlink_data
+[1.358s] running develop
+[1.475s] running egg_info
+[1.475s] creating nabi.egg-info
+[1.475s] writing nabi.egg-info/PKG-INFO
+[1.475s] writing dependency_links to nabi.egg-info/dependency_links.txt
+[1.476s] writing entry points to nabi.egg-info/entry_points.txt
+[1.476s] writing requirements to nabi.egg-info/requires.txt
+[1.476s] writing top-level names to nabi.egg-info/top_level.txt
+[1.476s] writing manifest file 'nabi.egg-info/SOURCES.txt'
+[1.477s] reading manifest file 'nabi.egg-info/SOURCES.txt'
+[1.477s] writing manifest file 'nabi.egg-info/SOURCES.txt'
+[1.478s] running build_ext
+[1.478s] Creating /home/louis/ros2_ws/install/nabi/lib/python3.10/site-packages/nabi.egg-link (link to .)
+[1.479s] Installing canbus script to /home/louis/ros2_ws/install/nabi/lib/nabi
+[1.479s] Installing parser script to /home/louis/ros2_ws/install/nabi/lib/nabi
+[1.479s] Installing recorder script to /home/louis/ros2_ws/install/nabi/lib/nabi
+[1.479s] Installing talker script to /home/louis/ros2_ws/install/nabi/lib/nabi
+[1.479s] Installing writer script to /home/louis/ros2_ws/install/nabi/lib/nabi
+[1.479s] 
+[1.479s] Installed /home/louis/ros2_ws/build/nabi
+[1.479s] running symlink_data
+[1.479s] creating /home/louis/ros2_ws/install/nabi/share/ament_index
+[1.479s] creating /home/louis/ros2_ws/install/nabi/share/ament_index/resource_index
+[1.479s] creating /home/louis/ros2_ws/install/nabi/share/ament_index/resource_index/packages
+[1.480s] symbolically linking /home/louis/ros2_ws/build/nabi/resource/nabi -> /home/louis/ros2_ws/install/nabi/share/ament_index/resource_index/packages
+[1.480s] symbolically linking /home/louis/ros2_ws/build/nabi/package.xml -> /home/louis/ros2_ws/install/nabi/share/nabi
+[1.480s] symbolically linking /home/louis/ros2_ws/build/nabi/launch/conversation_launch.py -> /home/louis/ros2_ws/install/nabi/share/nabi
+[1.502s] Invoked command in '/home/louis/ros2_ws/build/nabi' returned '0': PYTHONPATH=/home/louis/ros2_ws/build/nabi/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/louis/ros2_ws/install/nabi/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/louis/ros2_ws/build/nabi/build --no-deps symlink_data

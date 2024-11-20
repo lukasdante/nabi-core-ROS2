@@ -1,8 +1,0 @@
-[0.000000] (-) TimerEvent: {}
-[0.000254] (-) JobUnselected: {'identifier': 'my_package'}
-[0.000276] (-) JobUnselected: {'identifier': 'nabi'}
-[0.000291] (-) JobUnselected: {'identifier': 'py_pubsub'}
-[0.000304] (-) JobUnselected: {'identifier': 'py_srvcli'}
-[0.000315] (-) JobUnselected: {'identifier': 'python_parameters'}
-[0.000326] (-) JobUnselected: {'identifier': 'tutorial_interfaces'}
-[0.000435] (-) EventReactorShutdown: {}

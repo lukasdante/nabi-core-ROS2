@@ -1,0 +1,23 @@
+running develop
+running egg_info
+creating python_parameters.egg-info
+writing python_parameters.egg-info/PKG-INFO
+writing dependency_links to python_parameters.egg-info/dependency_links.txt
+writing entry points to python_parameters.egg-info/entry_points.txt
+writing requirements to python_parameters.egg-info/requires.txt
+writing top-level names to python_parameters.egg-info/top_level.txt
+writing manifest file 'python_parameters.egg-info/SOURCES.txt'
+reading manifest file 'python_parameters.egg-info/SOURCES.txt'
+writing manifest file 'python_parameters.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/louis/ros2_ws/install/python_parameters/lib/python3.10/site-packages/python-parameters.egg-link (link to .)
+Installing minimal_param_node script to /home/louis/ros2_ws/install/python_parameters/lib/python_parameters
+
+Installed /home/louis/ros2_ws/build/python_parameters
+running symlink_data
+creating /home/louis/ros2_ws/install/python_parameters/share/ament_index
+creating /home/louis/ros2_ws/install/python_parameters/share/ament_index/resource_index
+creating /home/louis/ros2_ws/install/python_parameters/share/ament_index/resource_index/packages
+symbolically linking /home/louis/ros2_ws/build/python_parameters/resource/python_parameters -> /home/louis/ros2_ws/install/python_parameters/share/ament_index/resource_index/packages
+symbolically linking /home/louis/ros2_ws/build/python_parameters/package.xml -> /home/louis/ros2_ws/install/python_parameters/share/python_parameters
+symbolically linking /home/louis/ros2_ws/build/python_parameters/launch/python_parameters_launch.py -> /home/louis/ros2_ws/install/python_parameters/share/python_parameters
