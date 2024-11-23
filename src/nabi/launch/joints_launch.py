@@ -1,43 +1,19 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
 
+axes    = ['x', 'y', 'z', 'a', 'b', 'c']
+can_ids = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]
+
 def generate_launch_description():
     print("Generating launch description for joints")
     return LaunchDescription([
         Node(
-            namespace='x_axis',
+            namespace=f'{axis}',
             package='nabi',
             executable='joint',
-            name='jointx',
-        ),
-        Node(
-            namespace=f'y_axis',
-            package='nabi',
-            executable='joint',
-            name=f'jointy',
-        ),
-        # Node(
-        #     namespace=f'z_axis',
-        #     package='nabi',
-        #     executable='joint',
-        #     name=f'joint',
-        # ),
-        # Node(
-        #     namespace=f'a_axis',
-        #     package='nabi',
-        #     executable='joint',
-        #     name=f'joint',
-        # ),
-        # Node(
-        #     namespace=f'b_axis',
-        #     package='nabi',
-        #     executable='joint',
-        #     name=f'joint',
-        # ),
-        # Node(
-        #     namespace=f'c_axis',
-        #     package='nabi',
-        #     executable='joint',
-        #     name=f'joint',
-        # ),
+            name='joint',
+            parameters=[
+                {'can_id': can_id}
+            ]
+        ) for axis, can_id in zip(axes, can_ids)
     ])

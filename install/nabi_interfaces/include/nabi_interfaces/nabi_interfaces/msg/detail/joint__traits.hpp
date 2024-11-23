@@ -1,0 +1,1 @@
+/home/louis/ros2_ws/build/nabi_interfaces/rosidl_generator_cpp/nabi_interfaces/msg/detail/joint__traits.hpp

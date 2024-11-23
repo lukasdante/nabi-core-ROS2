@@ -28,7 +28,7 @@ setup(
             'parser = nabi.parser:main',
             'talker = nabi.talker:main',
             'joint = nabi.joint:main',
-            'canbus = nabi.canbus:main',
+            'actor = nabi.actor:main',
         ],
     },
 )
