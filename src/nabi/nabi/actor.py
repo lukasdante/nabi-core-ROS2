@@ -1,6 +1,10 @@
 from dotenv import load_dotenv
 from typing import List
+import subprocess
+import serial.tools.list_ports
 import time
+import can
+import os
 
 from .joint import Joint
 
@@ -14,9 +18,22 @@ class JointActor(Node):
         super().__init__('joint_actor')
 
         try:
+
+            # Find the CAN port
+            self.can_port = self.find_can_port()
+            if self.can_port is None:
+                self.get_logger().error("No CAN interface found. Please check your connection.")
+                return
+            
+            # Initialize the CAN communication
+            self.change_permissions(self.can_port, "777", os.getenv('PASSWORD'))
+
+            # Set the CAN bus
+            self.bus = can.interface.Bus(interface='slcan', channel=self.can_port, bitrate=500000)
+            
             self.joints: List[Joint] = []
             for config in joint_configs:
-                joint = Joint(**config)
+                joint = Joint(**config, bus=self.bus)
                 self.joints.append(joint)
 
             self.timer = self.create_timer(0.1, self.spin_joints)
@@ -71,6 +88,33 @@ class JointActor(Node):
                 time.sleep(0.5)
 
         self.reset_position()
+
+    def change_permissions(self, file_path, permissions, password):
+        """ Changes permission of the USB ports to allow automated CAN bus connection. """
+        try:
+            # Construct the chmod command
+            command = ["sudo", "-S", "chmod", permissions, file_path]
+            
+            # Pass the password via stdin
+            subprocess.run(
+                command,
+                input=f"{password}\n",
+                text=True,
+                capture_output=True,
+                check=True
+            )
+            
+        except subprocess.CalledProcessError as e:
+            self.get_logger().error(f'Subprocess error: {e}')
+
+    # Locate the CAN port for USB2CAN or similar adapter
+    def find_can_port(self):
+        """ Finds a CAN connection from USB ports. """
+        ports = list(serial.tools.list_ports.comports())
+        for port in ports:
+            if "CAN" in port.description or "USB2CAN" in port.description:
+                return port.device
+        return None
 
 def main(args=None):
     load_dotenv()

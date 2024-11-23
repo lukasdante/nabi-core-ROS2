@@ -12,18 +12,28 @@ from rcl_interfaces.msg import ParameterDescriptor
 # from nabi_interfaces.msg import MoveData
 
 class Joint(Node):
-    def __init__(self, axis, can_id, max_left, max_right, gear_ratio, zero_angle):
+    def __init__(self, axis, can_id, max_left, max_right, gear_ratio, zero_angle, bus=None):
         super().__init__(axis)
 
         try:
-            # Find the CAN port
-            self.can_port = self.find_can_port()
-            if self.can_port is None:
-                self.get_logger().error("No CAN interface found. Please check your connection.")
-                return
-            
-            # Initialize the CAN communication
-            self.change_permissions(self.can_port, "777", os.getenv('PASSWORD'))
+            # Set the CAN bus
+            self.bus = bus
+
+            # If no CAN bus provided
+            if bus is None:
+                # Find the CAN port
+                self.can_port = self.find_can_port()
+                if self.can_port is None:
+                    self.get_logger().error("No CAN interface found. Please check your connection.")
+                    return
+                
+                # Initialize the CAN communication
+                self.change_permissions(self.can_port, "777", os.getenv('PASSWORD'))
+                self.bus = can.interface.Bus(interface='slcan', channel=self.can_port, bitrate=500000)
+
+            self.notifier = can.Notifier(self.bus, [self.notifier_callback]) ## add callback
+
+
 
             # Declare parameters for the node
             self.declare_parameter('axis', axis, ParameterDescriptor(description='Name of the joint.'))
@@ -49,10 +59,6 @@ class Joint(Node):
             # ROS components
             self.joint_data_publisher = self.create_publisher(String, 'joint/joint_data', 10)
             # self.move_srv = self.create_subscription(MoveData, 'move_joint', self.move_callback)
-
-            # Set the CAN bus
-            self.bus = can.interface.Bus(interface='slcan', channel=self.can_port, bitrate=500000)
-            self.notifier = can.Notifier(self.bus, [self.notifier_callback]) ## add callback
 
             # Set joint defaults
             self.current_angle = 0
