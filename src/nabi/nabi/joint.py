@@ -62,7 +62,7 @@ class Joint(Node):
                              'speed': 0x32,
                             }
 
-            self.get_logger().info('Joint initialized.')
+            self.get_logger().info(f'Joint {self.axis} initialized.')
 
         except Exception as e:
             self.get_logger().error(f'Failed to initialize joint: {e}')

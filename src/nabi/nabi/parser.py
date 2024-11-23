@@ -97,14 +97,17 @@ class Parser(Node):
 def main(args=None):
     load_dotenv()
 
-    rclpy.init(args=args)
+    try:
+        rclpy.init(args=args)
 
-    lone_parser = Parser()
+        lone_parser = Parser()
 
-    rclpy.spin(lone_parser)
+        rclpy.spin(lone_parser)
+
+    except KeyboardInterrupt:
+        pass
 
     lone_parser.destroy_node()
-    rclpy.shutdown()
 
 
 if __name__ == '__main__':

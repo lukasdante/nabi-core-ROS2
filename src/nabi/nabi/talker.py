@@ -53,10 +53,6 @@ class Talker(Node):
             self.publisher = self.create_publisher(Bool, 'conversation/reset', 10)
             self.subscriber = self.create_subscription(String, 'conversation/response', self.talk, 10)
 
-            msg = Bool()
-            msg.data = True
-            self.publisher.publish(msg)
-
             self.get_logger().info("Talker initialized.")
         except Exception as e:
             self.get_logger().error(f"Unable to initialize talker: {e}")
@@ -180,11 +176,13 @@ def main(args=None):
 
     load_dotenv()
 
-    rclpy.init(args=args)
+    try:
+        rclpy.init(args=args)
 
-    lone_talker = Talker()
+        lone_talker = Talker()
 
-    rclpy.spin(lone_talker)
+        rclpy.spin(lone_talker)
+    except KeyboardInterrupt:
+        pass
 
     lone_talker.destroy_node()
-    rclpy.shutdown()

@@ -33,6 +33,7 @@ class Recorder(Node):
             self.silence_limit = self.get_parameter('silence_limit').get_parameter_value().double_value
 
             self.publisher = self.create_publisher(String, 'conversation/request_audio', 10)
+            self.jumpstart = self.create_subscription(Bool,'actor/conversation/jumpstart', self.record, 10)
             self.subscription = self.create_subscription(Bool,'conversation/reset', self.record, 10)
 
             self.get_logger().info("Recorder initialized.")
@@ -80,7 +81,7 @@ class Recorder(Node):
 
             # For every 200ms display the volume
             if (self.get_clock().now().nanoseconds - last_log_time) >= (0.2 * 1e9):
-                self.get_logger().info(f"Current volume: {volume}")
+                self.get_logger().debug(f"Current volume: {volume}")
                 last_log_time = self.get_clock().now().nanoseconds
             
             # Record silent chunks and stop recording once limit is reached
@@ -140,15 +141,17 @@ def main(args=None):
     asound = cdll.LoadLibrary('libasound.so')
     asound.snd_lib_error_set_handler(c_error_handler)
 
-    rclpy.init(args=args)
+    try:
+        rclpy.init(args=args)
 
-    lone_recorder = Recorder()
+        lone_recorder = Recorder()
 
-    rclpy.spin(lone_recorder)
+        rclpy.spin(lone_recorder)
+    
+    except KeyboardInterrupt:
+        pass
 
     lone_recorder.destroy_node()
-    rclpy.shutdown()
-
 
 if __name__ == '__main__':
     main()

@@ -91,14 +91,16 @@ class Writer(Node):
 def main(args=None):
     load_dotenv()
 
-    rclpy.init(args=args)
+    try:
+        rclpy.init(args=args)
 
-    lone_writer = Writer()
+        lone_writer = Writer()
 
-    rclpy.spin(lone_writer)
+        rclpy.spin(lone_writer)
+    except KeyboardInterrupt:
+        pass
 
     lone_writer.destroy_node()
-    rclpy.shutdown()
 
 
 if __name__ == '__main__':

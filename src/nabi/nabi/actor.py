@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from typing import List
+import time
 
 from .joint import Joint
 
@@ -19,18 +20,26 @@ class JointActor(Node):
                 self.joints.append(joint)
 
             self.timer = self.create_timer(0.1, self.spin_joints)
+            self.stop_loop = False
+
+            self.jumpstart_conversation()
 
             self.get_logger().info(f'JointActor node initialized.')
         except Exception as e:
             self.get_logger().error(f'Failed to initialize JointActor node: {e}')
 
+    def jumpstart_conversation(self):
+        jumpstart = Bool()
+        jumpstart.data = True
+        self.create_publisher(Bool, 'conversation/jumpstart', 10).publish(jumpstart)
+
     def spin_joints(self):
         for joint in self.joints:
             rclpy.spin_once(joint, timeout_sec=0.01)
 
-    def move_sync(self, joint_angles, joint_velocities, joint_accelerations):
+    def move_sync(self, joints: List[Joint], joint_angles, joint_velocities, joint_accelerations):
         try:
-            for joint, angle, velocity, acceleration in zip(self.joints, joint_angles, joint_velocities, joint_accelerations):
+            for joint, angle, velocity, acceleration in zip(joints, joint_angles, joint_velocities, joint_accelerations):
                 joint.move(angle, velocity, acceleration)
         except Exception as e:
             self.get_logger().error(f'Failed to move the motors synchronously: {e}')
@@ -46,11 +55,22 @@ class JointActor(Node):
     def terminate_process(self):
         pass
 
-    def preset_callback(self):
+    def preset_callback(self, msg):
         pass
 
-    def move_preset(self):
-        pass
+    def move_preset(self, preset_angles: List[List]):
+        """ Moves to a preset position. """
+        self.reset_position()
+
+        while not self.stop_loop:
+            for preset_angle in preset_angles:
+                self.move_sync(self.joints[:6], preset_angle[:6])
+                # TODO: Wait until all the joints are done moving
+                time.sleep(0.5)
+                self.joints[6].move(preset_angle[6])
+                time.sleep(0.5)
+
+        self.reset_position()
 
 def main(args=None):
     load_dotenv()
@@ -75,7 +95,6 @@ def main(args=None):
         pass
 
     joint_actor.destroy_node()
-    rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
